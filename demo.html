@@ -1,0 +1,38 @@
+<!--
+@license
+Copyright (c) 2014 Horacio "LostInBrittany" Gonzalez
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+-->
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+<title>seed-element Demo</title>
+
+<style>
+  body {
+    background-color: #eeeeee;
+  }
+</style>
+<script src="../webcomponentsjs/webcomponents.js"></script>
+<link   rel="import" href="../polymer/polymer.html">
+<link   rel="import" href="../flip-card/flip-card.html">
+
+<body>
+  <template is="auto-binding">
+
+  <flip-card status="{{status}}">
+    <front>Hi mate!</front>
+    <back>Bye mate!</back>
+  </flip-card>
+  
+  <div><h1>Status {{status}}</h1></div>
+
+
+  </template>
+
+  <script>
+    var template = document.querySelector('template[is="auto-binding"]');
+</script>
+</body>
+</html>

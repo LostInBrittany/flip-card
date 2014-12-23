@@ -1,0 +1,96 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-icons/core-icons.html">
+
+<!--
+The objective of the `<flip-card>` element is to propose a Polymer implementation of the flip-card
+UI pattern using CSS 3D transforms.
+In order to use `<flip-card>` you must have a browser supporting CSS 3D transforms.
+#### Example
+    <flip-card>
+      <front>Hi mate!</front>
+      <back>Bye mate!</back>
+    </flip-card>
+#### Options
+A `width` and and `height` attributes can be added to the `<flip-card>` element to
+define card dimensions. Dimensions by default are 250x250 px.
+A `status` attribute ca be used to recover and/or force the status from the outside
+of the element. Valid status are `showFront` and `showBack` 
+@blurb Implements the flip-card UI pattern
+@status beta
+@homepage https://github.com/LostInBrittany/flip-card
+-->
+<polymer-element name="flip-card" attributes="width hight status">
+  <template>
+    <style>
+      :host {
+        display: block;
+        width: {{width}};
+        height: {{height}};
+        -webkit-perspective: 600px;
+        perspective: 600px; 
+      }
+      #front, #back {
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: inherit;
+        height: inherit;
+        padding-top: 1em;
+        padding-right: 1em;
+        background-color: #ffffff;
+        border-radius: -2px;
+        box-shadow: 0 0 5px 2px  rgba(0, 0, 0, 0.4);
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out; 
+      }
+      .swap  {
+        position: absolute;
+        top:0;
+        right: 0;
+      }
+      #front {
+        -webkit-transform: rotateY(0) rotateX(0);
+        transform: rotateY(0) rotateX(0); 
+      }
+      #back {
+        -webkit-transform: rotateY(-180deg);
+        transform: rotateY(-180deg); 
+      }
+      #front.showBack  {
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg); 
+      }
+      #back.showBack {
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0); 
+      }
+    </style>
+    <div id="front" class="{{status}}">
+      <core-icon class="swap" icon="swap-horiz" on-click="{{flip}}"></core-icon>
+      <content select="front"></content>
+    </div>
+    <div id="back" class="{{status}}">
+      <core-icon class="swap" icon="swap-horiz" on-click="{{flip}}"></core-icon>
+     <content select="back"></content>
+    </div>
+  </template>
+  <script>
+    Polymer("flip-card", {
+      width: "250px",
+      height: "250px",
+      status: "showFront",
+      flip: function(event, detail, sender) {
+        if ("front" == sender.parentNode.id) {
+          this.status = "showBack"
+        }
+        if ("back" == sender.parentNode.id) {
+          this.status = "showFront"
+        }
+      }
+    });
+  </script>
+</polymer-element>

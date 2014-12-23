@@ -1,0 +1,24 @@
+{
+  "name": "flip-card",
+  "version": "0.0.1",
+  "authors": [
+    "Horacio Gonzalez <horacio.gonzalez@gmail.com>"
+  ],
+  "description": "Flip card Polymer web-componentt.",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "flip-card"
+  ],
+  "main": "flip-card.html",
+  "license": "MIT",
+  "homepage": "https://github.com/lostinbrittany/flip-card/",
+  "ignore": [
+    "/.*"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.2",
+    "polymer-core-icons": "Polymer/core-icons#~0.5.2"
+  }
+}
